@@ -1,0 +1,57 @@
+body {
+  /* The image used */
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/084/163/original/pexels-ave-calvar-martinez-5153317.jpg?1685721358");
+}
+
+.bg {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-top: 100px;
+
+  margin: 50px;
+  margin-left: 400px;
+  margin-right: 500px;
+
+  padding: 20px;
+  border-radius: 10px;
+}
+.container {
+  text-align: center;
+  padding: 10px;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.form-control {
+  width: 50%;
+  border-left: 10px;
+}
+
+.temp {
+  font-size: 70px;
+  text-align: center;
+}
+
+.form-inline {
+  text-align: center;
+}
+
+#celcius {
+  text-decoration: none;
+}
+#faranhite {
+  text-decoration: none;
+}
+.foot {
+  text-align: center;
+  font-weight: 300;
+  background-color: rgba(255, 227, 255, 0.3);
+  margin-left: 400px;
+  margin-right: 500px;
+
+  padding: 20px;
+  border-radius: 10px;
+}
