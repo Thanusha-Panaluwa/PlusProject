@@ -22,7 +22,7 @@ function showLocation(response) {
 
   //temprature
   celciusTemp = response.data.temperature.current;
-  alert(celciusTemp);
+  //alert(celciusTemp);
 
   let temprature = document.querySelector(".temp");
   temprature.innerHTML = Math.round(celciusTemp);
