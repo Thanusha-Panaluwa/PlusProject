@@ -31,8 +31,9 @@ h1 {
 }
 
 .temp {
-  font-size: 70px;
+  font-size: 100px;
   text-align: center;
+  font-weight: 700;
 }
 
 .form-inline {
@@ -47,11 +48,18 @@ h1 {
 }
 .foot {
   text-align: center;
-  font-weight: 300;
+  font-weight: 500;
   background-color: rgba(255, 227, 255, 0.3);
-  margin-left: 400px;
-  margin-right: 500px;
+  margin-left: 50px;
+  margin-right: 50px;
 
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
+}
+
+#forecast {
+  display: flex;
+}
+#miniBox {
+  background-color: rgba(125, 255, 122, 0.4);
 }

@@ -4,9 +4,39 @@ let day = date.getDay();
 let hours = date.getHours();
 let min = date.getMinutes();
 
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Satureday",
+];
 
 current.innerHTML = days[day] + "  " + hours + " : " + min;
+
+//display Forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = '<div class="row">';
+  let days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Satureday",
+    "Sunday",
+  ];
+  days.forEach(function (day) {
+    forecastHTML = `${forecastHTML}<div class="col-2"> <div class="weather-forecast-date">${day}</div><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"alt="weather-icon" width=" 30"/><div class="weather-forecast-temperature"><span class="Weather-forecast-temp">18</span></div></div></div>`;
+  });
+
+  forecastHTML = forecastHTML + "</div>";
+  forecastElement.innerHTML = forecastHTML;
+}
 
 //current location
 function showLocation(response) {
@@ -36,9 +66,15 @@ function showLocation(response) {
   let clear = document.querySelector(".clear");
   clear.innerHTML = response.data.condition.description;
 
+  //Country
+  let country = document.querySelector(".country");
+  country.innerHTML = response.data.country;
+
   //feels
   let feels = document.querySelector(".feels");
   feels.innerHTML = Math.round(response.data.temperature.feels_like);
+
+  displayForecast();
 }
 
 function showPosition(position) {
