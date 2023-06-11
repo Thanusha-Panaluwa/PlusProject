@@ -20,7 +20,8 @@ if (hours > 12 && min < 10) {
 }
 
 //display Forecast
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = '<div class="row">';
@@ -34,7 +35,13 @@ function displayForecast() {
     "Sunday",
   ];
   days.forEach(function (day) {
-    forecastHTML = `${forecastHTML}<div class="box"><div class="row"><div class="col-2"><div class="weather-forecast-date">${day}</div><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"alt="weather-icon" width=" 30"/><div class="weather-forecast-temperature"><span class="Weather-forecast-temp">20</span>| <span class="Weather-forecast-temp">18</span></div></div></div></div></div>&nbsp;&nbsp;&nbsp;&nbsp;`;
+    forecastHTML = `${forecastHTML}
+                <div class="col-2" id="box">
+                  <div class="weather-forecast-date">Monday</div>
+                  <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"alt="weather-icon" width=" 30"/>
+                  <div class="weather-forecast-temperature"><span class="Weather-forecast-temp">20</span>| <span class="Weather-forecast-temp">18</span></div>
+               
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;`;
   });
 
   forecastHTML = forecastHTML + "</div>";
@@ -51,6 +58,7 @@ function getForcast(coordinates) {
   let ApiKEY = "e4o9d2209401dft9565e97304ab65b63";
   let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${Longit}&lat=${Latit}&key=${ApiKEY}&units=metric`;
   console.log(apiURL);
+  axios.get(apiURL).then(displayForecast);
 }
 
 //current location
@@ -91,7 +99,6 @@ function showLocation(response) {
   //console.log(response.data);
 
   getForcast(response.data.coordinates);
-  displayForecast();
 }
 
 function showPosition(position) {

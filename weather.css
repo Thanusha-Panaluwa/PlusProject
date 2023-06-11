@@ -59,7 +59,9 @@ h1 {
 
 #forecast {
   display: flex;
+  margin-left: 80px;
 }
+
 #miniBox {
   background-color: rgba(125, 255, 122, 0.4);
 }
@@ -69,10 +71,11 @@ h1 {
   height: 35px;
 }
 
-.box {
-  background-color: rgba(255, 255, 255, 0.3);
-  display: flex;
-  width: 250px;
+#box {
+  background-color: rgba(99, 139, 161, 0.3);
+
+  width: 100px;
+  padding: 5px;
   border-radius: 10px;
   text-align: center;
   opacity: 10px;
