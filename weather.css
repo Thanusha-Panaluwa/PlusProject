@@ -8,8 +8,8 @@ body {
   border-top: 100px;
 
   margin: 50px;
-  margin-left: 400px;
-  margin-right: 500px;
+  margin-left: 50px;
+  margin-right: 50px;
 
   padding: 20px;
   border-radius: 10px;
@@ -62,4 +62,41 @@ h1 {
 }
 #miniBox {
   background-color: rgba(125, 255, 122, 0.4);
+}
+
+#wind {
+  border-image-width: 35px;
+  height: 35px;
+}
+
+.box {
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  width: 250px;
+  border-radius: 10px;
+  text-align: center;
+  opacity: 10px;
+}
+
+.middle {
+  padding: 40px;
+  border-top: 30px;
+}
+
+.white {
+  background-color: rgba(248, 242, 248, 0.3);
+  margin-top: 20px;
+  margin-left: 150px;
+  margin-right: 150px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.rainbow {
+  background: rgba(79, 220, 74, 0.1);
+  margin-top: 20px;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding: 10px;
+  border-radius: 10px;
 }

@@ -11,10 +11,13 @@ let days = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Satureday",
+  "Saturday",
 ];
-
-current.innerHTML = days[day] + "  " + hours + " : " + min;
+if (hours > 12 && min < 10) {
+  current.innerHTML = days[day] + "  " + hours + " : " + "0" + min + " am";
+} else {
+  current.innerHTML = days[day] + "  " + hours + " : " + min + " pm";
+}
 
 //display Forecast
 function displayForecast() {
@@ -27,15 +30,27 @@ function displayForecast() {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Satureday",
+    "Saturday",
     "Sunday",
   ];
   days.forEach(function (day) {
-    forecastHTML = `${forecastHTML}<div class="col-2"> <div class="weather-forecast-date">${day}</div><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"alt="weather-icon" width=" 30"/><div class="weather-forecast-temperature"><span class="Weather-forecast-temp">18</span></div></div></div>`;
+    forecastHTML = `${forecastHTML}<div class="box"><div class="row"><div class="col-2"><div class="weather-forecast-date">${day}</div><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"alt="weather-icon" width=" 30"/><div class="weather-forecast-temperature"><span class="Weather-forecast-temp">20</span>| <span class="Weather-forecast-temp">18</span></div></div></div></div></div>&nbsp;&nbsp;&nbsp;&nbsp;`;
   });
 
   forecastHTML = forecastHTML + "</div>";
   forecastElement.innerHTML = forecastHTML;
+}
+
+//her coordinates
+function getForcast(coordinates) {
+  console.log(coordinates);
+  let Latit = coordinates.latitude;
+  console.log(Latit);
+  let Longit = coordinates.longitude;
+  console.log(Longit);
+  let ApiKEY = "e4o9d2209401dft9565e97304ab65b63";
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${Longit}&lat=${Latit}&key=${ApiKEY}&units=metric`;
+  console.log(apiURL);
 }
 
 //current location
@@ -73,7 +88,9 @@ function showLocation(response) {
   //feels
   let feels = document.querySelector(".feels");
   feels.innerHTML = Math.round(response.data.temperature.feels_like);
+  //console.log(response.data);
 
+  getForcast(response.data.coordinates);
   displayForecast();
 }
 
@@ -112,16 +129,17 @@ function calculateToBack(event) {
   change.innerHTML = Math.round(celciusTemp);
 }
 
+function searchCity(city) {
+  //alert(city);
+  let apikey = "e4o9d2209401dft9565e97304ab65b63"; //add your API key here
+  let apiLocation = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&units=metric`;
+  axios.get(apiLocation).then(showLocation); //for search location
+}
+
 function search(event) {
   event.preventDefault();
   let city = document.querySelector("#input").value;
   searchCity(city);
-}
-
-function searchCity(city) {
-  let apikey = "e4o9d2209401dft9565e97304ab65b63"; //add your API key here
-  let apiLocation = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&units=metric`;
-  axios.get(apiLocation).then(showLocation); //for search location
 }
 
 let loc = document.querySelector("#search-form");
