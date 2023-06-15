@@ -21,11 +21,11 @@ if (hours > 12 && min < 10) {
 
 //display Forecast
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forcast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = '<div class="row">';
-  let days = [
+  /* let days = [
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -33,13 +33,13 @@ function displayForecast(response) {
     "Friday",
     "Saturday",
     "Sunday",
-  ];
-  days.forEach(function (day) {
+  ]; */
+  forcast.forEach(function (forecastDay) {
     forecastHTML = `${forecastHTML}
                 <div class="col-2" id="box">
-                  <div class="weather-forecast-date">Monday</div>
-                  <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"alt="weather-icon" width=" 30"/>
-                  <div class="weather-forecast-temperature"><span class="Weather-forecast-temp">20</span>| <span class="Weather-forecast-temp">18</span></div>
+                  <div class="weather-forecast-date">sunday</div>
+                  <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png" alt="weather-icon" width=" 30"/>
+                  <div class="weather-forecast-temperature"><span class="Weather-forecast-temp">${forecastDay.temperature.maximum}</span>| <span class="Weather-forecast-temp">${forecastDay.temperature.minimum}</span></div>
                
             </div>&nbsp;&nbsp;&nbsp;&nbsp;`;
   });
@@ -55,8 +55,9 @@ function getForcast(coordinates) {
   console.log(Latit);
   let Longit = coordinates.longitude;
   console.log(Longit);
-  let ApiKEY = "e4o9d2209401dft9565e97304ab65b63";
-  let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${Longit}&lat=${Latit}&key=${ApiKEY}&units=metric`;
+  let ApiKEY = "bd5b4461863eddaa6ced0a0a67989e0a";
+  //let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${Longit}&lat=${Latit}&key=${ApiKEY}&units=metric`;
+  let apiURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${Latit}&lon=${Longit}&appid=${ApiKEY}`;
   console.log(apiURL);
   axios.get(apiURL).then(displayForecast);
 }
