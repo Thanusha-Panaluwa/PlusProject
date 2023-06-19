@@ -34,12 +34,36 @@ function displayForecast(response) {
     "Saturday",
     "Sunday",
   ]; */
+
+  function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    return days[day];
+  }
   forcast.forEach(function (forecastDay) {
     forecastHTML = `${forecastHTML}
                 <div class="col-2" id="box">
-                  <div class="weather-forecast-date">sunday</div>
-                  <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png" alt="weather-icon" width=" 30"/>
-                  <div class="weather-forecast-temperature"><span class="Weather-forecast-temp">${forecastDay.temperature.maximum}</span>| <span class="Weather-forecast-temp">${forecastDay.temperature.minimum}</span></div>
+                  <div class="weather-forecast-date">${formatDay(
+                    forecastDay.time
+                  )}</div>
+                  <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                    forecastDay.condition.icon
+                  }.png" alt="weather-icon" width=" 30"/>
+                  <div class="weather-forecast-temperature"><span class="Weather-forecast-temp">${Math.round(
+                    forecastDay.temperature.maximum
+                  )} &#176;</span> | <span class="Weather-forecast-temp">${Math.round(
+      forecastDay.temperature.minimum
+    )} &#176;</span></div>
                
             </div>&nbsp;&nbsp;&nbsp;&nbsp;`;
   });
@@ -55,9 +79,8 @@ function getForcast(coordinates) {
   console.log(Latit);
   let Longit = coordinates.longitude;
   console.log(Longit);
-  let ApiKEY = "bd5b4461863eddaa6ced0a0a67989e0a";
-  //let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${Longit}&lat=${Latit}&key=${ApiKEY}&units=metric`;
-  let apiURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${Latit}&lon=${Longit}&appid=${ApiKEY}`;
+  let ApiKEY = "fbef01f4et1b02o0d25c27210a43ef3f";
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${Longit}&lat=${Latit}&key=${ApiKEY}&units=metric`;
   console.log(apiURL);
   axios.get(apiURL).then(displayForecast);
 }
